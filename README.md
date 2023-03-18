@@ -1,3 +1,3 @@
 # SCP-Card
 Design: MistSon\
-Code: AikenVers\
+Code: AikenVers
