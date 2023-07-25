@@ -1,3 +1,3 @@
 # SCP key-card editor
-Design: MistSon\
+Fronted: CrimsonPlague\
 Code: AikenVers
