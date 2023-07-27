@@ -128,64 +128,7 @@ public class levels : MonoBehaviour
     {
         li.sprite = off;
         active = false;
-    } 
-    // перенести проверку и to_default из worker
-    // менять спрайт через li.sprite
-    // добавить смену дизайна ВСЕХ кнопок при смене спека в respec() !!!
-    /*
-     * Worker:
-     * L0_off - Bottoms_32
-     * L0_high - Bottoms_35
-     * L0_press - Bottoms_34
-     * L0_on - Bottoms_33
-     * 
-     * L1_off - Bottoms_36
-     * L1_high - Bottoms_37
-     * L1_press - Bottoms_38
-     * L1_on - Bottoms_39
-     * 
-     * TF:
-     * L2_off - Bottoms_20
-     * L2_high - Bottoms_23
-     * L2_press - Bottoms_22
-     * L2_on - Bottoms_21
-     * 
-     * L3_off - Bottoms_24
-     * L3_high - Bottoms_25
-     * L3_press - Bottoms_26
-     * L3_on - Bottoms_27
-     * 
-     * L4_off - Bottoms_28
-     * L4_high - Bottoms_31
-     * L4_press - Bottoms_30
-     * L4_on - Bottoms_29
-     * 
-     * Simp:
-     * L1_off - Bottoms_0
-     * L1_high - Bottoms_3
-     * L1_press - Bottoms_2
-     * L1_on - Bottoms_1
-     * 
-     * L2_off - Bottoms_4
-     * L2_high - Bottoms_7
-     * L2_press - Bottoms_6
-     * L2_on - Bottoms_5
-     * 
-     * L3_off - Bottoms_8
-     * L3_high - Bottoms_11
-     * L3_press - Bottoms_10
-     * L3_on - Bottoms_9
-     * 
-     * L4_off - Bottoms_12
-     * L4_high - Bottoms_15
-     * L4_press - Bottoms_14
-     * L4_on - Bottoms_13
-     * 
-     * L5_off - Bottoms_16
-     * L5_high - Bottoms_19
-     * L5_press - Bottoms_18
-     * L5_on - Bottoms_17
-     */
+    }
 
     public void Alldisable()
     {
