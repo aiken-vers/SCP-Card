@@ -8,12 +8,24 @@ public class skin : MonoBehaviour
 {
     public Button sb;
     public SpriteRenderer Body, Head, Ears;
-    Color32 bump;
+    Color32 activeColor;
+
+    public static Dictionary<int, Color32> SkinColor = ()
+    {
+        { 0, new Color32(255, 240, 194, 255) },
+        { 1,  new Color32(255, 216, 163, 255) },
+        { 2, new Color32(255, 208, 165, 255) },
+        { 3, new Color32(250, 184, 148, 255) },
+        { 4, new Color32(209, 163, 119, 255) },
+        { 5, new Color32(188, 135, 83, 255) },
+        { 6, new Color32(154, 110, 74, 255) },
+        { 7, new Color32(84, 60, 39, 255) }
+    };
 
     // Start is called before the first frame update
     void Start()
     {
-        bump = new Color32(255, 240, 194, 255);
+        activeColor = SkinColor[0];
 
         sb.onClick.AddListener(TaskOnClick);
         int rnd = Main.rnd_skin;
@@ -29,83 +41,19 @@ public class skin : MonoBehaviour
 
     void TaskOnClick()
     {
-        if (sb.name == "color0")
-        {
-            bump = new Color32(255, 240, 194, 255);
-        }
-        else if (sb.name == "color1")
-        {
-            bump = new Color32(255, 216, 163, 255);
-        }
-        else if(sb.name == "color2")
-        {
-            bump = new Color32(255, 208, 165, 255);
-        }
-        else if (sb.name == "color3")
-        {
-            bump = new Color32(250, 184, 148, 255);
-        }
-        else if (sb.name == "color4")
-        {
-            bump = new Color32(209, 163, 119, 255);
-        }
-        else if (sb.name == "color5")
-        {
-            bump = new Color32(188, 135, 83, 255);
-        }
-        else if (sb.name == "color6")
-        {
-            bump = new Color32(154, 110, 74, 255);
-        }
-        else if (sb.name == "color7")
-        {
-            bump = new Color32(84, 60, 39, 255);
-        }
-        Body.color = bump;
-        Head.color = bump;
-        Ears.color = bump;
+        var sbname = sb.name;
+        var colorNum = Convert.ToInt32(String.Join("", sbname.Where(char.IsDigit)));
+        activeColor = SkinColor[colorNum];        
+        Body.color = activeColor;
+        Head.color = activeColor;
+        Ears.color = activeColor;
     }
     public void get_rnd()
     {
         int rnd = Random.Range(0, 8);
-
-        if (rnd== 0)
-        {
-            bump = new Color32(255, 240, 194, 255);
-        }
-        else if (rnd == 1)
-        {
-            bump = new Color32(255, 216, 163, 255);
-        }
-        else if (rnd == 2)
-        {
-            bump = new Color32(255, 208, 165, 255);
-        }
-        else if (rnd == 3)
-        {
-            bump = new Color32(250, 184, 148, 255);
-        }
-        else if (rnd == 4)
-        {
-            bump = new Color32(209, 163, 119, 255);
-        }
-        else if (rnd == 5)
-        {
-            bump = new Color32(188, 135, 83, 255);
-        }
-        else if (rnd == 6)
-        {
-            bump = new Color32(154, 110, 74, 255);
-        }
-        else if (rnd == 7)
-        {
-            bump = new Color32(84, 60, 39, 255);
-        }
-
-        Body.color = bump;
-        Head.color = bump;
-        Ears.color = bump;
+        activeColor = SkinColor[rnd];
+        Body.color = activeColor;
+        Head.color = activeColor;
+        Ears.color = activeColor;
     }
-
-
 }

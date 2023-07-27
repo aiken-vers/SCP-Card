@@ -12,16 +12,6 @@ public class Main : MonoBehaviour
     public static int chead, cbody, ceye, cear, cnose, cmug;
     public static int rnd_skin = Random.Range(0, 8);
     public static bool rnd_avatar = false;
-    //public static Button worker;
-    //public static Button TF;
-    //public static Button scientist;
-    //public static Button L0;
-    //public static Button L1;
-    //public static Button L2;
-    //public static Button L3;
-    //public static Button L4;
-    //public static Button L5;
-
 
     // Start is called before the first frame update
     void Start()

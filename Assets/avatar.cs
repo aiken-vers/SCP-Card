@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class avatar : MonoBehaviour
 {
     public SpriteRenderer Head, Body, Eye, Ear, Nose, Mug;
+    private enum PointDirection { Left, Right }
     public bool right, left;
     public Button ab;
     List<Sprite> Heads = new List<Sprite>();
@@ -16,7 +17,6 @@ public class avatar : MonoBehaviour
     List<Sprite> Noses = new List<Sprite>();
     List<Sprite> Bodies = new List<Sprite>();
     List<Sprite> Mugs = new List<Sprite>();
-    //int chead, cbody, ceye, cear, cnose; 
     // Start is called before the first frame update
     void Start()
     {
@@ -33,121 +33,52 @@ public class avatar : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
-    }
+    {        
+
+    }    
     void TaskOnClick()
     {
+        var clickDirection = ab.name.EndsWith("right")? PointDirection.Right : PointDirection.Left;
         if (ab.name.Contains("body"))
         {
-            if (ab.name.EndsWith("right"))
-            {
-                if (Main.cbody < Bodies.Count - 1)
-                    Main.cbody++;
-                else
-                    Main.cbody = 0;
-            }
-            else if (ab.name.EndsWith("left"))
-            {
-                if (Main.cbody > 0)
-                    Main.cbody--;
-                else
-                    Main.cbody = Bodies.Count - 1;
-            }
+            Main.cbody = MoveSpritePointer(Main.cbody, Bodies.Count, clickDirection);            
             Body.sprite = Bodies[Main.cbody];
         }
         else if (ab.name.Contains("head"))
         {
-            if (ab.name.EndsWith("right"))
-            {
-                if (Main.chead < Heads.Count - 1)
-                    Main.chead++;
-                else
-                    Main.chead = 0;
-            }
-            else if (ab.name.EndsWith("left"))
-            {
-                if (Main.chead > 0)
-                    Main.chead--;
-                else
-                    Main.chead = Heads.Count - 1;
-            }
+            Main.chead = MoveSpritePointer(Main.chead, Heads.Count, clickDirection);
             Head.sprite = Heads[Main.chead];
         }
         else if (ab.name.Contains("ear"))
         {
-            if (ab.name.EndsWith("right"))
-            {
-                if (Main.cear < Ears.Count - 1)
-                    Main.cear++;
-                else
-                    Main.cear = 0;
-            }
-            else if (ab.name.EndsWith("left"))
-            {
-                if (Main.cear > 0)
-                    Main.cear--;
-                else
-                    Main.cear = Ears.Count - 1;
-            }
+            Main.cear = MoveSpritePointer(Main.cear, Ears.Count, clickDirection);
             Ear.sprite = Ears[Main.cear];
         }
         else if (ab.name.Contains("eye"))
         {
-            if (ab.name.EndsWith("right"))
-            {
-                if (Main.ceye < Eyes.Count - 1)
-                    Main.ceye++;
-                else
-                    Main.ceye = 0;
-            }
-            else if (ab.name.EndsWith("left"))
-            {
-                if (Main.ceye > 0)
-                    Main.ceye--;
-                else
-                    Main.ceye = Eyes.Count - 1;
-            }
+            Main.ceye = MoveSpritePointer(Main.ceye, Eyes.Count, clickDirection);            
             Eye.sprite = Eyes[Main.ceye];
         }
         else if (ab.name.Contains("nose"))
         {
-            if (ab.name.EndsWith("right"))
-            {
-                if (Main.cnose < Noses.Count - 1)
-                    Main.cnose++;
-                else
-                    Main.cnose = 0;
-            }
-            else if (ab.name.EndsWith("left"))
-            {
-                if (Main.cnose > 0)
-                    Main.cnose--;
-                else
-                    Main.cnose = Noses.Count - 1;
-            }
+            Main.cnose = MoveSpritePointer(Main.cnose, Noses.Count, clickDirection);            
             Nose.sprite = Noses[Main.cnose];
         }
         else if (ab.name.Contains("mug"))
         {
-            if (ab.name.EndsWith("right"))
-            {
-                if (Main.cmug < Mugs.Count - 1)
-                    Main.cmug++;
-                else
-                    Main.cmug = 0;
-            }
-            else if (ab.name.EndsWith("left"))
-            {
-                if (Main.cmug > 0)
-                    Main.cmug--;
-                else
-                    Main.cmug = Mugs.Count - 1;
-            }
+            Main.cmug = MoveSpritePointer(Main.cmug, Mugs.Count, clickDirection);            
             Mug.sprite = Mugs[Main.cmug];
         }
     }
 
+    private int MoveSpritePointer(int pointer, int spritesCount, PointDirection direction)
+    {
+        if (direction == PointDirection.Right)
+            pointer = pointer < spritesCount - 1 ? ++pointer : 0;
+        if (direction == PointDirection.Left)
+            pointer = pointer > 0 ? --pointer : spritesCount - 1;
+        return pointer;
+    }
     void LoadLists()
     {
         Heads = Resources.LoadAll<Sprite>("Avatar/head").ToList();
